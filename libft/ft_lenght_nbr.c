@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lenght_nbr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/02 12:46:47 by mkayumba          #+#    #+#             */
-/*   Updated: 2019/12/19 17:18:24 by mkayumba         ###   ########.fr       */
+/*   Created: 2019/11/29 15:16:45 by mkayumba          #+#    #+#             */
+/*   Updated: 2019/11/29 15:17:43 by mkayumba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/ft_printf.h"
-#include <stdio.h>
-#include <math.h>
-#include <locale.h>
-
-
-int main(void)
+unsigned int	ft_lenght_nbr(long long nbr, unsigned int base)
 {
-	int i = 0;
-	int j = 0;
+	unsigned int	i;
 
-	i = printf("%05%");
-	printf("\nretour officiel   : %d\n", i);
-	fflush(stdout);
-	j =  ft_printf("%05%");
-	printf("\nretour non officiel   : %d\n", j);
+	i = 0;
+	if (!nbr)
+		i = 1;
+	while (nbr)
+	{
+		nbr = nbr / base;
+		i++;
+	}
+	return (i);
 }

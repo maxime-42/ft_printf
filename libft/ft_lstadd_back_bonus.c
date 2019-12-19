@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/02 12:46:47 by mkayumba          #+#    #+#             */
-/*   Updated: 2019/12/19 17:18:24 by mkayumba         ###   ########.fr       */
+/*   Created: 2019/11/04 18:43:11 by mkayumba          #+#    #+#             */
+/*   Updated: 2019/11/06 14:22:25 by mkayumba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/ft_printf.h"
-#include <stdio.h>
-#include <math.h>
-#include <locale.h>
+#include "libft.h"
+#include <stdlib.h>
 
-
-int main(void)
+void		ft_lstadd_back(t_list **alst, t_list *new)
 {
-	int i = 0;
-	int j = 0;
+	t_list	*tmp;
 
-	i = printf("%05%");
-	printf("\nretour officiel   : %d\n", i);
-	fflush(stdout);
-	j =  ft_printf("%05%");
-	printf("\nretour non officiel   : %d\n", j);
+	if (*alst)
+	{
+		tmp = *alst;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = new;
+		new->next = 0;
+	}
+	else
+		*alst = new;
 }

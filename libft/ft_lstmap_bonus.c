@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/02 12:46:47 by mkayumba          #+#    #+#             */
-/*   Updated: 2019/12/19 17:18:24 by mkayumba         ###   ########.fr       */
+/*   Created: 2019/11/04 18:51:24 by mkayumba          #+#    #+#             */
+/*   Updated: 2019/11/04 18:51:50 by mkayumba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/ft_printf.h"
-#include <stdio.h>
-#include <math.h>
-#include <locale.h>
+#include "libft.h"
 
-
-int main(void)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	int i = 0;
-	int j = 0;
+	t_list	*begin;
+	t_list	*tmp;
 
-	i = printf("%05%");
-	printf("\nretour officiel   : %d\n", i);
-	fflush(stdout);
-	j =  ft_printf("%05%");
-	printf("\nretour non officiel   : %d\n", j);
+	if (!lst)
+		return (0);
+	if (!(tmp = ft_lstnew((*f)(lst->content))))
+		return (0);
+	begin = tmp;
+	while (lst->next)
+	{
+		lst = lst->next;
+		if (!(tmp->next = ft_lstnew((*f)(lst->content))))
+		{
+			ft_lstclear(&begin, del);
+			return (0);
+		}
+		tmp = tmp->next;
+	}
+	return (begin);
 }

@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/02 12:46:47 by mkayumba          #+#    #+#             */
-/*   Updated: 2019/12/19 17:18:24 by mkayumba         ###   ########.fr       */
+/*   Created: 2019/11/04 17:47:08 by mkayumba          #+#    #+#             */
+/*   Updated: 2019/11/05 15:56:04 by mkayumba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/ft_printf.h"
-#include <stdio.h>
-#include <math.h>
-#include <locale.h>
+#include <stdlib.h>
 
-
-int main(void)
+void				*ft_memchr(const void *s, int c, size_t n)
 {
-	int i = 0;
-	int j = 0;
+	unsigned char	*p;
 
-	i = printf("%05%");
-	printf("\nretour officiel   : %d\n", i);
-	fflush(stdout);
-	j =  ft_printf("%05%");
-	printf("\nretour non officiel   : %d\n", j);
+	p = (unsigned char *)s;
+	while (n--)
+	{
+		if (*p == (unsigned char)c)
+			return ((void *)p);
+		p++;
+	}
+	return (0);
 }

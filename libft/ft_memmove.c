@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/02 12:46:47 by mkayumba          #+#    #+#             */
-/*   Updated: 2019/12/19 17:18:24 by mkayumba         ###   ########.fr       */
+/*   Created: 2019/11/04 16:45:37 by mkayumba          #+#    #+#             */
+/*   Updated: 2019/11/06 10:49:48 by mkayumba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/ft_printf.h"
-#include <stdio.h>
-#include <math.h>
-#include <locale.h>
+#include <stdlib.h>
+#include "libft.h"
 
-
-int main(void)
+void				*ft_memmove(void *dest, const void *src, size_t n)
 {
-	int i = 0;
-	int j = 0;
+	size_t			i;
+	unsigned char	*p_dest;
+	unsigned char	*p_src;
 
-	i = printf("%05%");
-	printf("\nretour officiel   : %d\n", i);
-	fflush(stdout);
-	j =  ft_printf("%05%");
-	printf("\nretour non officiel   : %d\n", j);
+	i = 0;
+	p_src = (unsigned char *)src;
+	p_dest = (unsigned char *)dest;
+	if (src == dest)
+		return (dest);
+	if (p_dest > p_src)
+	{
+		while (++i <= n)
+			p_dest[n - i] = p_src[n - i];
+	}
+	else
+		ft_memcpy(dest, src, n);
+	return (dest);
 }

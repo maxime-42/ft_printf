@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/02 12:46:47 by mkayumba          #+#    #+#             */
-/*   Updated: 2019/12/19 17:18:24 by mkayumba         ###   ########.fr       */
+/*   Created: 2019/11/04 16:44:24 by mkayumba          #+#    #+#             */
+/*   Updated: 2019/11/06 10:39:16 by mkayumba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/ft_printf.h"
-#include <stdio.h>
-#include <math.h>
-#include <locale.h>
+#include <stdlib.h>
 
-
-int main(void)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	int i = 0;
-	int j = 0;
+	unsigned char	*p_dest;
+	unsigned char	*p_src;
 
-	i = printf("%05%");
-	printf("\nretour officiel   : %d\n", i);
-	fflush(stdout);
-	j =  ft_printf("%05%");
-	printf("\nretour non officiel   : %d\n", j);
+	p_src = (unsigned char *)src;
+	p_dest = (unsigned char *)dest;
+	if (dest == src)
+		return (dest);
+	while (n--)
+		*(p_dest++) = *(p_src++);
+	return (dest);
 }
