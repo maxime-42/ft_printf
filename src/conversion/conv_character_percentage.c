@@ -6,7 +6,7 @@
 /*   By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/02 12:43:34 by mkayumba          #+#    #+#             */
-/*   Updated: 2019/12/03 12:17:48 by mkayumba         ###   ########.fr       */
+/*   Updated: 2019/12/27 14:50:45 by mkayumba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,20 @@ void	conv_type_percentage(t_info *info, va_list  va)
 	size_t	i;
 
 	i = 0;
-	info->lenght = 1;
+	info->lenght = 0;
+	if (info->flags & FLAGS_ZERO && info->flags & FLAGS_LEFT)
+		info->flags &= ~FLAGS_ZERO;
 	if (!(info->flags & FLAGS_LEFT))
 	{
-		while (info->width >info->lenght && i++ < (info->width - info->lenght))
-			info->ret += write(1, " ", 1);
+			put_width_in_buf(info, 1);
+			info->buf[info->lenght++] = '%';
 	}
-	info->ret += write(1, "%", 1);
 	if ((info->flags & FLAGS_LEFT))
-		while (info->width >info->lenght && i++ < (info->width - info->lenght))
-			info->ret += write(1, " ", 1);
+	{
+			info->buf[info->lenght++] = '%';
+			put_width_in_buf(info, 1);
+	}
+	info->ret += write(1, info->buf, info->lenght);
 	(void)va;
 }
 

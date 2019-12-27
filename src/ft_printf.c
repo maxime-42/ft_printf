@@ -6,7 +6,7 @@
 /*   By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 12:52:13 by mkayumba          #+#    #+#             */
-/*   Updated: 2019/12/19 16:26:16 by mkayumba         ###   ########.fr       */
+/*   Updated: 2019/12/27 14:56:04 by mkayumba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,10 @@ static int	_vsnprintf(const char *fmt, va_list va)
 	while (*fmt)
 	{
 		init_struct(&info);
-		while  ((*fmt && *fmt ^ '%') && info.lenght < BUF_SIZE)
+		while ((*fmt && *fmt ^ '%') && info.lenght < BUF_SIZE)
+		{
 			info.buf[info.lenght++] = *fmt++;
+		}
 		if (!(info.lenght ^ BUF_SIZE))
 		{
 			info.ret += write(1, &info.buf, info.lenght);

@@ -6,7 +6,7 @@
 /*   By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 15:12:28 by mkayumba          #+#    #+#             */
-/*   Updated: 2019/12/17 15:24:22 by mkayumba         ###   ########.fr       */
+/*   Updated: 2019/12/27 14:33:04 by mkayumba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ static void	no_flags_left(t_info *info, unsigned long long value,
 	if (info->precision > size)
 	{
 		total_size = (info->precision - size) + size;
-		//printf("ici info->precision = %d | size = %d | total_size = %d\n", info->precision, size, total_size);
 	}
 	if ((info->flags & FLAGS_ZERO) && info->negative)
 		put_signe_in_buf(info);

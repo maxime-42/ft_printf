@@ -6,11 +6,50 @@
 /*   By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 12:17:37 by mkayumba          #+#    #+#             */
-/*   Updated: 2019/12/19 17:43:57 by mkayumba         ###   ########.fr       */
+/*   Updated: 2019/12/27 16:38:36 by mkayumba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+static flags_left(t_info *info, char **p, size_t lenght)
+{
+	size_t	i;
+	size_t	save_lenght;
+
+	i = 0;
+	save_lenght = lenght;
+	while (lenght)
+	{
+		fill_buf(info, 1, **p);
+		(*p)++;
+		lenght--;
+	}
+	lenght = save_lenght;
+	if (info->width > lenght)
+	{
+		while (i < (info->width - lenght))
+		{
+			fill_buf(info, 1, ' ');
+			i++;
+		}
+	}
+}
+
+static not_flags_left(t_info *info, char **p, size_t lenght)
+{
+	size_t	i;
+	
+	i = 0;
+	while (lenght < info->width)
+		fill_buf(info, info->width - save_lenght, ' ')
+	while (lenght)
+	{
+		fill_buf(info, 1, **p);
+		(*p)++;
+	}
+
+}
 
 void	conv_type_string(t_info *info, va_list  va)
 {
@@ -26,38 +65,15 @@ void	conv_type_string(t_info *info, va_list  va)
 		return ;
 	}
 	lenght = ft_strlen(p);
-	if ((info->flags & FLAGS_PRECISION))
-		if (info->precision < lenght)
-			lenght = info->precision;
-	if (!(info->flags & FLAGS_LEFT))
-		while (info->width > lenght && i++ < (info->width - lenght))
-			info->ret += write(1, " ", 1);
-	info->ret += write(1, p, lenght);
-	if ((info->flags & FLAGS_LEFT))
-		while (lenght < info->width)
-		{
-			info->ret += write(1, " ", 1);
-			lenght++;
-		}
-}
-
-void	conv_type_addr(t_info *info, va_list  va)
-{
-	unsigned long long addr;
-	size_t	i;
-
-	i = 0;
-	addr = (unsigned long long)va_arg(va, char*);
-	info->buf[info->lenght++] = '0';
-	info->buf[info->lenght++] = 'x';
-	ntoa(info, addr);
-	if (!(info->flags & FLAGS_LEFT))
+	if (info->flags & FLAGS_PRECISION && info->precision < lenght)
 	{
-		while (info->width >info->lenght && i++ < (info->width - info->lenght))
-			info->ret += write(1, " ", 1);
+		lenght = info->precision;
+	}
+	if ((info->flags & FLAGS_LEFT))
+		flags_left(info, &p, lenght);
+	else
+	{
+		not_flags_left(info, &p,lenght);
 	}
 	info->ret += write(1, info->buf, info->lenght);
-	if ((info->flags & FLAGS_LEFT))
-		while (info->width >info->lenght && i++ < (info->width - info->lenght))
-			info->ret += write(1, " ", 1);
 }
