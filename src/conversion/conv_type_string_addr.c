@@ -6,17 +6,23 @@
 /*   By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 12:17:37 by mkayumba          #+#    #+#             */
-/*   Updated: 2019/12/27 16:38:36 by mkayumba         ###   ########.fr       */
+/*   Updated: 2020/01/06 15:02:23 by mkayumba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static flags_left(t_info *info, char **p, size_t lenght)
+static void	flags_left(t_info *info, char **p, size_t lenght)
 {
 	size_t	i;
 	size_t	save_lenght;
+	size_t	nb_space;
+	char	c;
 
+	if (info->flags & FLAGS_ZERO)
+		c = '0';
+	else
+		c = ' ';
 	i = 0;
 	save_lenght = lenght;
 	while (lenght)
@@ -28,24 +34,35 @@ static flags_left(t_info *info, char **p, size_t lenght)
 	lenght = save_lenght;
 	if (info->width > lenght)
 	{
-		while (i < (info->width - lenght))
+		nb_space = info->width - lenght;
+		while (i < nb_space)
 		{
-			fill_buf(info, 1, ' ');
+			fill_buf(info, 1, c);
 			i++;
 		}
 	}
 }
 
-static not_flags_left(t_info *info, char **p, size_t lenght)
+static void	not_flags_left(t_info *info, char **p, size_t lenght)
 {
 	size_t	i;
-	
+	size_t	save_lenght;
+	char	c;
+
+	if (info->flags & FLAGS_ZERO)
+		c = '0';
+	else
+		c = ' ';
 	i = 0;
-	while (lenght < info->width)
-		fill_buf(info, info->width - save_lenght, ' ')
+	save_lenght = lenght;
+	if (info->width > lenght)
+	{
+		fill_buf(info, info->width - save_lenght, c);
+	}
 	while (lenght)
 	{
 		fill_buf(info, 1, **p);
+		lenght--;
 		(*p)++;
 	}
 
@@ -60,17 +77,15 @@ void	conv_type_string(t_info *info, va_list  va)
 	i = 0;
 	p = va_arg(va, char*);
 	if (!p)
-	{
-		info->ret += write(1, "(null)", 6);
-		return ;
-	}
+		p = "(null)";
 	lenght = ft_strlen(p);
-	if (info->flags & FLAGS_PRECISION && info->precision < lenght)
-	{
+	if (info->flags & FLAGS_PRECISION && lenght > info->precision)
 		lenght = info->precision;
-	}
 	if ((info->flags & FLAGS_LEFT))
+	{
+		info->flags &= ~(FLAGS_ZERO);
 		flags_left(info, &p, lenght);
+	}
 	else
 	{
 		not_flags_left(info, &p,lenght);

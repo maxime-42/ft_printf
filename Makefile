@@ -6,7 +6,7 @@
 #    By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/18 17:16:34 by mkayumba          #+#    #+#              #
-#    Updated: 2019/12/17 13:41:27 by mkayumba         ###   ########.fr        #
+#    Updated: 2020/01/06 14:51:50 by mkayumba         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -31,7 +31,6 @@ SOURCES	=	ft_printf.c\
 		check/check_lenght_specifies.c\
 		check/check_type.c\
 		print_buffer/find_conv_type.c\
-		put_format/format_integer.c\
 		put_format/integer_width_precision.c\
 		put_format/hash_and_signe.c\
 		conversion/conv_character_percentage.c\
@@ -40,6 +39,7 @@ SOURCES	=	ft_printf.c\
 		conversion/ntoa.c\
 		conversion/conv_type_float.c\
 		conversion/fill_buffer.c\
+		conversion/conv_type_addr.c\
 
 SRC = $(addprefix $(DIR_S)/,$(SOURCES))
 
