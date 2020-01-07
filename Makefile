@@ -6,15 +6,13 @@
 #    By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/18 17:16:34 by mkayumba          #+#    #+#              #
-#    Updated: 2020/01/07 13:46:00 by mkayumba         ###   ########.fr        #
+#    Updated: 2020/01/07 16:38:23 by mkayumba         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 CC	= gcc
 
-# CFLAGS	= -g -Wall -Wextra -Werror
-
-CFLAGS	= -g -Wall -g
+CFLAGS	= -g -Wall -Wextra -Werror
 
 LIBFT	= ./libft
 
@@ -36,10 +34,12 @@ SOURCES	=	ft_printf.c\
 		put_format/precision_integer.c\
 		put_format/width_integer.c\
 		put_format/hash_and_signe.c\
-		conversion/conv_character_percentage.c\
+		conversion/conv_type_c.c\
 		conversion/conv_type_string_addr.c\
 		conversion/conv_type_integer.c\
+		conversion/conv_type_n.c\
 		conversion/ntoa.c\
+		conversion/conv_type_percentage.c\
 		conversion/conv_type_float.c\
 		conversion/fill_buffer.c\
 		conversion/conv_type_addr.c\

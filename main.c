@@ -6,7 +6,7 @@
 /*   By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/02 12:46:47 by mkayumba          #+#    #+#             */
-/*   Updated: 2020/01/07 15:14:45 by mkayumba         ###   ########.fr       */
+/*   Updated: 2020/01/07 16:59:38 by mkayumba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ int main(void)
 	int j = 0;
 
 	printf("---------------------------------------------------------\n");
-	i = printf("%010.5d", -216);
+	i = printf("%.0d", 0);
 	printf("\nretour officiel   : %d\n", i);
 	fflush(stdout);
-	j =  ft_printf("%010.5d", -216);
-	printf("\nretour non officiel   : %d\n", j);
+/* 	j =  ft_printf("%.0d", 0); */
+/* 	printf("\nretour non officiel   : %d\n", j); */
 	printf("---------------------------------------------------------\n");
 }
