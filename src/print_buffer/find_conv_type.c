@@ -33,7 +33,6 @@ void	find_conv_type(const char **fmt, t_info *info, va_list va)
 	int	i;
 
 	i = -1;
-		printf("\nkel by\n");
 	if ((info->flags & FLAGS_APOSTROPHE) && !(**fmt ^ (char)39))
 	{
 		(*fmt)++;

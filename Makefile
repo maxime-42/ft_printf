@@ -12,7 +12,9 @@
 
 CC	= gcc
 
-CFLAGS	= -g -Wall -Wextra -Werror
+# CFLAGS	= -g -Wall -Wextra -Werror
+
+CFLAGS	= -g -Wall -g
 
 LIBFT	= ./libft
 

@@ -86,12 +86,7 @@ void  conv_type_integer(t_info *info, va_list va)
 	long		vlong;
 
 	if ((info->flags & FLAGS_PRECISION) && (info->flags & FLAGS_ZERO))
-	{
-		printf("\nhellow\n");
-		//info->flags &= ~FLAGS_ZERO;
 		info->flags &= ~FLAGS_ZERO;
-		printf("salut\n");
-	}
 	if (info->flags & FLAGS_LONG_LONG)
 	{
 		vlong_long = va_arg(va, long long);

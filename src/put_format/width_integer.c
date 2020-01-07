@@ -16,9 +16,9 @@ static void space(t_info *info, unsigned int size)
 {
 	if (info->negative && !(info->flags & FLAGS_LEFT))
 	{
-		info->lenght -= 1;
+		if (info->lenght > 0)
+			info->lenght -= 1;
 		fill_buf(info, size, ' ');
-		fill_buf(info, 1, '-');
 	}
 	else
 		fill_buf(info, size, ' ');
@@ -38,7 +38,8 @@ void	put_width_in_buf(t_info *info, unsigned int size)
 		}
 		else if (!(info->flags & FLAGS_LEFT) && !(info->flags & FLAGS_ZERO))
 		{
-			space(info, info->width - size);
+		  space(info, info->width - size);
+
 		}
 		else if (info->flags & FLAGS_LEFT)
 		{
