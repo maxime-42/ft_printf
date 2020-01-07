@@ -1,0 +1,48 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   width_integer.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/07 13:30:41 by mkayumba          #+#    #+#             */
+/*   Updated: 2020/01/07 14:32:46 by mkayumba         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ft_printf.h"
+
+static void space(t_info *info, unsigned int size)
+{
+	if (info->negative && !(info->flags & FLAGS_LEFT))
+	{
+		info->lenght -= 1;
+		fill_buf(info, size, ' ');
+		fill_buf(info, 1, '-');
+	}
+	else
+		fill_buf(info, size, ' ');
+}
+
+void	put_width_in_buf(t_info *info, unsigned int size)
+{
+	if (info->width > size)
+	{
+		if ((info->flags & FLAGS_SPACE))
+		{
+			space(info, 1);
+		}
+		else if ((info->flags & FLAGS_ZERO))
+		{
+			fill_buf(info, info->width - size, '0');
+		}
+		else if (!(info->flags & FLAGS_LEFT) && !(info->flags & FLAGS_ZERO))
+		{
+			space(info, info->width - size);
+		}
+		else if (info->flags & FLAGS_LEFT)
+		{
+			space(info, info->width - size);
+		}
+	}
+}

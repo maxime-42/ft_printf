@@ -6,7 +6,7 @@
 /*   By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 15:09:46 by mkayumba          #+#    #+#             */
-/*   Updated: 2019/12/27 14:34:59 by mkayumba         ###   ########.fr       */
+/*   Updated: 2020/01/07 15:13:05 by mkayumba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	find_conv_type(const char **fmt, t_info *info, va_list va)
 	int	i;
 
 	i = -1;
+		printf("\nkel by\n");
 	if ((info->flags & FLAGS_APOSTROPHE) && !(**fmt ^ (char)39))
 	{
 		(*fmt)++;

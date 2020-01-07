@@ -6,7 +6,7 @@
 /*   By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 14:08:03 by mkayumba          #+#    #+#             */
-/*   Updated: 2020/01/06 15:17:17 by mkayumba         ###   ########.fr       */
+/*   Updated: 2020/01/07 15:12:42 by mkayumba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	no_flags_left(t_info *info, unsigned long long value,
 	info->ret += write(1, info->buf, info->lenght);
 }
 
-void	put_format(t_info *info, unsigned long long value)
+static void	put_format(t_info *info, unsigned long long value)
 {
 	unsigned int size;
 	unsigned int total_size;
@@ -85,6 +85,13 @@ void  conv_type_integer(t_info *info, va_list va)
 	long long	vlong_long;
 	long		vlong;
 
+	if ((info->flags & FLAGS_PRECISION) && (info->flags & FLAGS_ZERO))
+	{
+		printf("\nhellow\n");
+		//info->flags &= ~FLAGS_ZERO;
+		info->flags &= ~FLAGS_ZERO;
+		printf("salut\n");
+	}
 	if (info->flags & FLAGS_LONG_LONG)
 	{
 		vlong_long = va_arg(va, long long);

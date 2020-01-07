@@ -6,7 +6,7 @@
 /*   By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 12:54:05 by mkayumba          #+#    #+#             */
-/*   Updated: 2019/12/03 15:42:09 by mkayumba         ###   ########.fr       */
+/*   Updated: 2020/01/07 15:03:59 by mkayumba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void				check_width(const char **fmt, t_info *info, va_list va);
 void				check_precision(const char **fmt, t_info *info, va_list va);
 void				check_lenght_specifies(const char **fmt, t_info *info);
 void				check_type(const char **fmt, t_info *info);
-void				put_format(t_info *info, unsigned long long value);
 void				print_bits(unsigned int n);
 void				put_precision_in_buf(t_info *info,  unsigned int size);
 void				put_width_in_buf(t_info *info, unsigned int size);
