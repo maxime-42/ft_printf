@@ -6,7 +6,7 @@
 /*   By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 18:13:08 by mkayumba          #+#    #+#             */
-/*   Updated: 2019/12/27 16:38:58 by mkayumba         ###   ########.fr       */
+/*   Updated: 2020/01/08 14:15:28 by mkayumba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	check_width(const char **fmt, t_info *info, va_list va)
 
 	if (ft_isdigit(**fmt))
 	{
+		//printf("ici\n");
+		info->flags |= FLAGS_WIDTH;
 		info->width = ft_atoi(*fmt);
 		while (ft_isdigit(**fmt))
 			(*fmt)++;
@@ -55,6 +57,7 @@ void	check_width(const char **fmt, t_info *info, va_list va)
 	else if (!(**fmt ^ '*'))
 	{
 		w = va_arg(va, int);
+		info->flags |= FLAGS_WIDTH;
 		if (w < 0)
 		{
 			info->flags |= FLAGS_LEFT;

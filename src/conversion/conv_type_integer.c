@@ -6,7 +6,7 @@
 /*   By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 14:08:03 by mkayumba          #+#    #+#             */
-/*   Updated: 2020/01/07 15:12:42 by mkayumba         ###   ########.fr       */
+/*   Updated: 2020/01/08 16:18:24 by mkayumba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static void	no_flags_left(t_info *info, unsigned long long value,
 	handle_hash(info);
 	put_precision_in_buf(info, size);
 	ntoa(info, value);
+	special_case_with_zero(info, value);
 	info->ret += write(1, info->buf, info->lenght);
 }
 
@@ -50,6 +51,7 @@ static void	put_format(t_info *info, unsigned long long value)
 		put_signe_in_buf(info);
 		put_precision_in_buf(info, size);
 		ntoa(info, value);
+		special_case_with_zero(info, value);
 		if (info->precision > size)
 			total_size = info->precision;
 		put_width_in_buf(info, total_size);
@@ -61,19 +63,30 @@ static void	put_format(t_info *info, unsigned long long value)
 
 static void	no_lenght_specifie(t_info *info, va_list va)
 {
-	int	value;
+	int					value;
+	unsigned long long u_value;
 
+	u_value = 0;
 	if (!(info->flags ^ FLAGS_CHAR))
 		value = (char)va_arg(va, int);
 	else if (!(info->flags ^ FLAGS_SHORT))
 		value = (short int)va_arg(va, int);
 	else
 	{
-		value = va_arg(va, int);
-		if (!(1 + (value >> 31) - (-value >> 31)))
+		if (info->flags & FLAGS_UNSIGNED)
 		{
-			value = -value;
-			info->negative = 1;
+			u_value = (unsigned long long)va_arg(va, unsigned int);
+			put_format(info, u_value);
+			return ;
+		}
+		else
+		{
+			value = va_arg(va, int);
+			if (!(1 + (value >> 31) - (-value >> 31)))
+			{
+				value = -value;
+				info->negative = 1;
+			}
 		}
 	}
 	put_format(info, value);
@@ -85,6 +98,7 @@ void  conv_type_integer(t_info *info, va_list va)
 	long long	vlong_long;
 	long		vlong;
 
+	vlong = 0;
 	if ((info->flags & FLAGS_PRECISION) && (info->flags & FLAGS_ZERO))
 		info->flags &= ~FLAGS_ZERO;
 	if (info->flags & FLAGS_LONG_LONG)

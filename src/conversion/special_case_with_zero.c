@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_rev.c                                        :+:      :+:    :+:   */
+/*   special_case_with_zero.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/27 12:19:01 by mkayumba          #+#    #+#             */
-/*   Updated: 2020/01/08 13:23:53 by mkayumba         ###   ########.fr       */
+/*   Created: 2020/01/08 14:21:12 by mkayumba          #+#    #+#             */
+/*   Updated: 2020/01/08 16:17:35 by mkayumba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	put_precision_in_buf(t_info *info,  unsigned int size)
+void	special_case_with_zero(t_info *info, unsigned long long value)
 {
-	if (info->flags & FLAGS_PRECISION)
+	if (!value && (info->flags & FLAGS_PRECISION) && !info->precision)
 	{
-		info->flags &= ~FLAGS_ZERO;
-		if (info->precision > size)
+		if (info->lenght && !info->width)
 		{
-			size = info->precision - size;
-			fill_buf(info, size, '0');
+				info->buf[--info->lenght] = '\0';
+		}
+		else if (info->lenght && info->width)
+		{
+			info->buf[info->lenght-1] = ' ';
 		}
 	}
 }

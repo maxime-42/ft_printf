@@ -6,7 +6,7 @@
 /*   By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 15:09:46 by mkayumba          #+#    #+#             */
-/*   Updated: 2020/01/07 15:13:05 by mkayumba         ###   ########.fr       */
+/*   Updated: 2020/01/08 16:11:21 by mkayumba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	find_conv_type(const char **fmt, t_info *info, va_list va)
 	{
 		if (!(g_array[i].type ^ **fmt))
 		{
+			if (!(**fmt ^ 'u') || !(**fmt ^ 'X') || !(**fmt ^ 'x'))
+				info->flags |= FLAGS_UNSIGNED;
 			g_array[i].ptr(info, va);
 		}
 	}

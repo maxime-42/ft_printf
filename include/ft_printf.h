@@ -6,7 +6,7 @@
 /*   By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 12:54:05 by mkayumba          #+#    #+#             */
-/*   Updated: 2020/01/07 15:03:59 by mkayumba         ###   ########.fr       */
+/*   Updated: 2020/01/08 15:29:30 by mkayumba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,14 @@
 # define FLAGS_LONG		(1U <<  8U)
 # define FLAGS_LONG_LONG	(1U <<  9U)
 # define FLAGS_PRECISION	(1U << 10U)
-# define FLAGS_APOSTROPHE	(1U << 11U)
+# define FLAGS_WIDTH	(1U << 11U)
+# define FLAGS_APOSTROPHE	(1U << 12U)
+# define FLAGS_UNSIGNED (1U << 13U)
 
 typedef struct			s_info
 {
 	char				buf[BUF_SIZE];
-	unsigned short int	flags;
+	unsigned int	flags;
 	unsigned int		precision;
 	unsigned int		width;
 	unsigned int		lenght;
@@ -71,4 +73,5 @@ void				conv_type_percentage(t_info *info, va_list  va);
 void				conv_type_n(t_info *info, va_list  va);
 void				conv_type_float(t_info *info, va_list va);
 void				fill_buf(t_info *info, size_t n, char c);
+void				special_case_with_zero(t_info *info, unsigned long long value);
 #endif

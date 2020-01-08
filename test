@@ -1,4 +1,4 @@
-sh ~/remove_backup
 make re
 gcc main.c libftprintf.a
 ./a.out | cat -e
+sh ~/remove_backup
