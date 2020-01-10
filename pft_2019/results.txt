@@ -7,234 +7,226 @@ WARNING: The return values reported here may be bugged on some systems.
           the function output--only the reported return value.
 
 
+Test 426 (p_null) : FAILED.
+    First line of code: {return test("%p", NULL);}
+      expected return value : 3
+      your return value     : 3
+      expected output : "0x0"
+      your output     : "0x0
+hellow size_addr = 3 | addr = 0
+"
+      expected (nonprintable as hex) : "0x0"
+      actual   (nonprintable as hex) : "0x0\x0ahellow size_addr = 3 | addr = 0\x0a"
+
 Test 427 (p_null_width_fit) : FAILED.
     First line of code: {return test("%5p", NULL);}
       expected return value : 5
-      your return value     : 3
+      your return value     : 5
       expected output : "  0x0"
-      your output     : "0x0"
+      your output     : "  0x0
+hellow size_addr = 3 | addr = 0
+"
       expected (nonprintable as hex) : "  0x0"
-      actual   (nonprintable as hex) : "0x0"
+      actual   (nonprintable as hex) : "  0x0\x0ahellow size_addr = 3 | addr = 0\x0a"
+
+Test 428 (p_null_width_nofit) : FAILED.
+    First line of code: {return test("%2p", NULL);}
+      expected return value : 3
+      your return value     : 3
+      expected output : "0x0"
+      your output     : "0x0
+hellow size_addr = 3 | addr = 0
+"
+      expected (nonprintable as hex) : "0x0"
+      actual   (nonprintable as hex) : "0x0\x0ahellow size_addr = 3 | addr = 0\x0a"
 
 Test 429 (p_void) : FAILED.
     First line of code: {return test("%.p", NULL);}
       expected return value : 2
-      your return value     : 3
+      your return value     : 2
       expected output : "0x"
-      your output     : "0x0"
+      your output     : "0x
+hellow size_addr = 3 | addr = 0
+"
       expected (nonprintable as hex) : "0x"
-      actual   (nonprintable as hex) : "0x0"
+      actual   (nonprintable as hex) : "0x\x0ahellow size_addr = 3 | addr = 0\x0a"
 
 Test 430 (p_void_width_fit) : FAILED.
     First line of code: {return test("%5.p", NULL);}
       expected return value : 5
-      your return value     : 3
+      your return value     : 5
       expected output : "   0x"
-      your output     : "0x0"
+      your output     : "  0x0
+hellow size_addr = 3 | addr = 0
+"
       expected (nonprintable as hex) : "   0x"
-      actual   (nonprintable as hex) : "0x0"
+      actual   (nonprintable as hex) : "  0x0\x0ahellow size_addr = 3 | addr = 0\x0a"
 
 Test 431 (p_void_width_nofit) : FAILED.
     First line of code: {return test("%2.p", NULL);}
       expected return value : 2
-      your return value     : 3
+      your return value     : 2
       expected output : "0x"
-      your output     : "0x0"
+      your output     : "0x
+hellow size_addr = 3 | addr = 0
+"
       expected (nonprintable as hex) : "0x"
-      actual   (nonprintable as hex) : "0x0"
+      actual   (nonprintable as hex) : "0x\x0ahellow size_addr = 3 | addr = 0\x0a"
 
 Test 432 (p_ftfc_literal_9w_prec2_undefbehav) : FAILED.
     First line of code: {return test("%9.2p
 ", 1234);}
       expected return value : 11
-      your return value     : 6
+      your return value     : 11
       expected output : "    0x4d2
 "
-      your output     : "0x4d2
+      your output     : "    0x4d2
+
+hellow size_addr = 5 | addr = 1234
 "
       expected (nonprintable as hex) : "    0x4d2\x0a"
-      actual   (nonprintable as hex) : "0x4d2\x0a"
+      actual   (nonprintable as hex) : "    0x4d2\x0a\x0ahellow size_addr = 5 | addr = 1234\x0a"
 
 Test 433 (p_ftfc_literal_2w_prec9_undefbehav) : FAILED.
     First line of code: {return test("%2.9p
 ", 1234);}
       expected return value : 13
-      your return value     : 6
+      your return value     : 3
       expected output : "0x0000004d2
 "
-      your output     : "0x4d2
+      your output     : "0x
+
+hellow size_addr = 5 | addr = 1234
 "
       expected (nonprintable as hex) : "0x0000004d2\x0a"
-      actual   (nonprintable as hex) : "0x4d2\x0a"
+      actual   (nonprintable as hex) : "0x\x0a\x0ahellow size_addr = 5 | addr = 1234\x0a"
 
 Test 434 (p_ftfc_zero_prec5_undefbehav) : FAILED.
     First line of code: {return test("%.5p", 0);}
       expected return value : 7
-      your return value     : 3
+      your return value     : 2
       expected output : "0x00000"
-      your output     : "0x0"
+      your output     : "0x
+hellow size_addr = 3 | addr = 0
+"
       expected (nonprintable as hex) : "0x00000"
-      actual   (nonprintable as hex) : "0x0"
+      actual   (nonprintable as hex) : "0x\x0ahellow size_addr = 3 | addr = 0\x0a"
 
 Test 435 (p_ftfc_zero_prec0_undefbehav) : FAILED.
     First line of code: {return test("%.0p", 0);}
       expected return value : 2
-      your return value     : 3
+      your return value     : 2
       expected output : "0x"
-      your output     : "0x0"
+      your output     : "0x
+hellow size_addr = 3 | addr = 0
+"
       expected (nonprintable as hex) : "0x"
-      actual   (nonprintable as hex) : "0x0"
+      actual   (nonprintable as hex) : "0x\x0ahellow size_addr = 3 | addr = 0\x0a"
 
 Test 436 (p_ftfc_5w_throwswarning) : FAILED.
     First line of code: {return test("%5p", 0);}
       expected return value : 5
-      your return value     : 3
+      your return value     : 5
       expected output : "  0x0"
-      your output     : "0x0"
+      your output     : "  0x0
+hellow size_addr = 3 | addr = 0
+"
       expected (nonprintable as hex) : "  0x0"
-      actual   (nonprintable as hex) : "0x0"
+      actual   (nonprintable as hex) : "  0x0\x0ahellow size_addr = 3 | addr = 0\x0a"
+
+Test 437 (p_basic) : FAILED.
+    First line of code: {return test("%p%p%p%p%p%p%p%p%p%p%p%p",&a01,&a02,&a03,&a04,&a05,&a06,&a07,&a08,&a09,&a10,&a11,&a12);}
+      expected return value : 156
+      your return value     : 156
+      expected output : "0x1013762880x1013762890x10137628a0x10137628c0x1013762900x1013762940x1013762980x1013762a00x1013762a80x1013762b00x1013762b80x1013762c0"
+      your output     : "0x1013762880x1013762890x10137628a0x10137628c0x1013762900x1013762940x1013762980x1013762a00x1013762a80x1013762b00x1013762b80x1013762c0
+hellow size_addr "
+      expected (nonprintable as hex) : "0x1013762880x1013762890x10137628a0x10137628c0x1013762900x1013762940x1013762980x1013762a00x1013762a80x1013762b00x1013762b80x1013762c0"
+      actual   (nonprintable as hex) : "0x1013762880x1013762890x10137628a0x10137628c0x1013762900x1013762940x1013762980x1013762a00x1013762a80x1013762b00x1013762b80x1013762c0\x0ahellow size_addr "
 
 Test 438 (p_width_fit) : FAILED.
     First line of code: {return test("%70p%70p%70p%70p%70p%70p%70p%70p%70p%70p%70p%70p",&a01,&a02,&a03,&a04,&a05,&a06,&a07,&a08,&a09,&a10,&a11,&a12);      expected return value : 1012
+      your return value     : 1025
+      expected output : "                                                           0x101376288                                                           0x101376289          "
+      your output     : "                                                           0x1013762.88                                                           0x1013762.89        "
+      expected (nonprintable as hex) : "                                                           0x101376288                                                           0x101376289          "
+      actual   (nonprintable as hex) : "                                                           0x1013762.88                                                           0x1013762.89        "
+
+Test 439 (p_width_nofit) : FAILED.
+    First line of code: {return test("%5p%5p%5p%5p%5p%5p%5p%5p%5p%5p%5p%5p",&a01,&a02,&a03,&a04,&a05,&a06,&a07,&a08,&a09,&a10,&a11,&a12);}
+      expected return value : 156
       your return value     : 156
-      expected output : "                                                           0x10fad7288                                                           0x10fad7289          "
-      your output     : "0x10fad72880x10fad72890x10fad728a0x10fad728c0x10fad72900x10fad72940x10fad72980x10fad72a00x10fad72a80x10fad72b00x10fad72b80x10fad72c0"
-      expected (nonprintable as hex) : "                                                           0x10fad7288                                                           0x10fad7289          "
-      actual   (nonprintable as hex) : "0x10fad72880x10fad72890x10fad728a0x10fad728c0x10fad72900x10fad72940x10fad72980x10fad72a00x10fad72a80x10fad72b00x10fad72b80x10fad72c0"
+      expected output : "0x1013762880x1013762890x10137628a0x10137628c0x1013762900x1013762940x1013762980x1013762a00x1013762a80x1013762b00x1013762b80x1013762c0"
+      your output     : "0x1013762880x1013762890x10137628a0x10137628c0x1013762900x1013762940x1013762980x1013762a00x1013762a80x1013762b00x1013762b80x1013762c0
+hellow size_addr "
+      expected (nonprintable as hex) : "0x1013762880x1013762890x10137628a0x10137628c0x1013762900x1013762940x1013762980x1013762a00x1013762a80x1013762b00x1013762b80x1013762c0"
+      actual   (nonprintable as hex) : "0x1013762880x1013762890x10137628a0x10137628c0x1013762900x1013762940x1013762980x1013762a00x1013762a80x1013762b00x1013762b80x1013762c0\x0ahellow size_addr "
 
 Test 440 (p_width_16) : FAILED.
     First line of code: {return test("%16p%16p%16p%16p%16p%16p%16p%16p%16p%16p%16p%16p",&a01,&a02,&a03,&a04,&a05,&a06,&a07,&a08,&a09,&a10,&a11,&a12);      expected return value : 222
+      your return value     : 222
+      expected output : "     0x101376288     0x101376289     0x10137628a     0x10137628c     0x101376290     0x101376294     0x101376298     0x1013762a0     0x1013762a8     0"
+      your output     : "     0x101376288     0x101376289     0x10137628a     0x10137628c     0x101376290     0x101376294     0x101376298     0x1013762a0     0x1013762a8     0"
+      expected (nonprintable as hex) : "     0x101376288     0x101376289     0x10137628a     0x10137628c     0x101376290     0x101376294     0x101376298     0x1013762a0     0x1013762a8     0"
+      actual   (nonprintable as hex) : "     0x101376288     0x101376289     0x10137628a     0x10137628c     0x101376290     0x101376294     0x101376298     0x1013762a0     0x1013762a8     0"
+
+Test 441 (p_width_8) : FAILED.
+    First line of code: {return test("%8p%8p%8p%8p%8p%8p%8p%8p%8p%8p%8p%8p",&a01,&a02,&a03,&a04,&a05,&a06,&a07,&a08,&a09,&a10,&a11,&a12);}
+      expected return value : 156
       your return value     : 156
-      expected output : "     0x10fad7288     0x10fad7289     0x10fad728a     0x10fad728c     0x10fad7290     0x10fad7294     0x10fad7298     0x10fad72a0     0x10fad72a8     0"
-      your output     : "0x10fad72880x10fad72890x10fad728a0x10fad728c0x10fad72900x10fad72940x10fad72980x10fad72a00x10fad72a80x10fad72b00x10fad72b80x10fad72c0"
-      expected (nonprintable as hex) : "     0x10fad7288     0x10fad7289     0x10fad728a     0x10fad728c     0x10fad7290     0x10fad7294     0x10fad7298     0x10fad72a0     0x10fad72a8     0"
-      actual   (nonprintable as hex) : "0x10fad72880x10fad72890x10fad728a0x10fad728c0x10fad72900x10fad72940x10fad72980x10fad72a00x10fad72a80x10fad72b00x10fad72b80x10fad72c0"
+      expected output : "0x1013762880x1013762890x10137628a0x10137628c0x1013762900x1013762940x1013762980x1013762a00x1013762a80x1013762b00x1013762b80x1013762c0"
+      your output     : "0x1013762880x1013762890x10137628a0x10137628c0x1013762900x1013762940x1013762980x1013762a00x1013762a80x1013762b00x1013762b80x1013762c0
+hellow size_addr "
+      expected (nonprintable as hex) : "0x1013762880x1013762890x10137628a0x10137628c0x1013762900x1013762940x1013762980x1013762a00x1013762a80x1013762b00x1013762b80x1013762c0"
+      actual   (nonprintable as hex) : "0x1013762880x1013762890x10137628a0x10137628c0x1013762900x1013762940x1013762980x1013762a00x1013762a80x1013762b00x1013762b80x1013762c0\x0ahellow size_addr "
 
 Test 442 (p_width_32) : FAILED.
     First line of code: {return test("%32p%32p%32p%32p%32p%32p%32p%32p%32p%32p%32p%32p",&a01,&a02,&a03,&a04,&a05,&a06,&a07,&a08,&a09,&a10,&a11,&a12);      expected return value : 455
-      your return value     : 156
-      expected output : "                     0x10fad7288                     0x10fad7289                     0x10fad728a                     0x10fad728c                     0"
-      your output     : "0x10fad72880x10fad72890x10fad728a0x10fad728c0x10fad72900x10fad72940x10fad72980x10fad72a00x10fad72a80x10fad72b00x10fad72b80x10fad72c0"
-      expected (nonprintable as hex) : "                     0x10fad7288                     0x10fad7289                     0x10fad728a                     0x10fad728c                     0"
-      actual   (nonprintable as hex) : "0x10fad72880x10fad72890x10fad728a0x10fad728c0x10fad72900x10fad72940x10fad72980x10fad72a00x10fad72a80x10fad72b00x10fad72b80x10fad72c0"
+      your return value     : 455
+      expected output : "                     0x101376288                     0x101376289                     0x10137628a                     0x10137628c                     0"
+      your output     : "                     0x101376288                     0x101376289                     0x10137628a                     0x10137628c                     0"
+      expected (nonprintable as hex) : "                     0x101376288                     0x101376289                     0x10137628a                     0x10137628c                     0"
+      actual   (nonprintable as hex) : "                     0x101376288                     0x101376289                     0x10137628a                     0x10137628c                     0"
 
 Test 443 (p_width_fit_lj) : FAILED.
     First line of code: {return test("%-70p%-70p%-70p%-70p%-70p%-70p%-70p%-70p%-70p%-70p%-70p%-70p",&a01,&a02,&a03,&a04,&a05,&a06,&a07,&a08,&a09,&a10      expected return value : 1012
       your return value     : 1012
-      expected output : "0x10fad7288                                                           0x10fad7289                                                           0x10fad728"
-      your output     : "                                                           0x10fad7288                                                           0x10fad7289          "
-      expected (nonprintable as hex) : "0x10fad7288                                                           0x10fad7289                                                           0x10fad728"
-      actual   (nonprintable as hex) : "                                                           0x10fad7288                                                           0x10fad7289          "
+      expected output : "0x101376288                                                           0x101376289                                                           0x10137628"
+      your output     : "0x101376288                                                           0x101376289                                                           0x10137628"
+      expected (nonprintable as hex) : "0x101376288                                                           0x101376289                                                           0x10137628"
+      actual   (nonprintable as hex) : "0x101376288                                                           0x101376289                                                           0x10137628"
+
+Test 444 (p_width_nofit_lj) : FAILED.
+    First line of code: {return test("%-5p%-5p%-5p%-5p%-5p%-5p%-5p%-5p%-5p%-5p%-5p%-5p",&a01,&a02,&a03,&a04,&a05,&a06,&a07,&a08,&a09,&a10,&a11,&a12);      expected return value : 156
+      your return value     : 156
+      expected output : "0x1013762880x1013762890x10137628a0x10137628c0x1013762900x1013762940x1013762980x1013762a00x1013762a80x1013762b00x1013762b80x1013762c0"
+      your output     : "0x1013762880x1013762890x10137628a0x10137628c0x1013762900x1013762940x1013762980x1013762a00x1013762a80x1013762b00x1013762b80x1013762c0
+hellow size_addr "
+      expected (nonprintable as hex) : "0x1013762880x1013762890x10137628a0x10137628c0x1013762900x1013762940x1013762980x1013762a00x1013762a80x1013762b00x1013762b80x1013762c0"
+      actual   (nonprintable as hex) : "0x1013762880x1013762890x10137628a0x10137628c0x1013762900x1013762940x1013762980x1013762a00x1013762a80x1013762b00x1013762b80x1013762c0\x0ahellow size_addr "
 
 Test 445 (p_width_16_lj) : FAILED.
     First line of code: {return test("%-16p%-16p%-16p%-16p%-16p%-16p%-16p%-16p%-16p%-16p%-16p%-16p",&a01,&a02,&a03,&a04,&a05,&a06,&a07,&a08,&a09,&a10      expected return value : 222
       your return value     : 222
-      expected output : "0x10fad7288     0x10fad7289     0x10fad728a     0x10fad728c     0x10fad7290     0x10fad7294     0x10fad7298     0x10fad72a0     0x10fad72a8     0x10fa"
-      your output     : "     0x10fad7288     0x10fad7289     0x10fad728a     0x10fad728c     0x10fad7290     0x10fad7294     0x10fad7298     0x10fad72a0     0x10fad72a8     0"
-      expected (nonprintable as hex) : "0x10fad7288     0x10fad7289     0x10fad728a     0x10fad728c     0x10fad7290     0x10fad7294     0x10fad7298     0x10fad72a0     0x10fad72a8     0x10fa"
-      actual   (nonprintable as hex) : "     0x10fad7288     0x10fad7289     0x10fad728a     0x10fad728c     0x10fad7290     0x10fad7294     0x10fad7298     0x10fad72a0     0x10fad72a8     0"
+      expected output : "0x101376288     0x101376289     0x10137628a     0x10137628c     0x101376290     0x101376294     0x101376298     0x1013762a0     0x1013762a8     0x1013"
+      your output     : "0x101376288     0x101376289     0x10137628a     0x10137628c     0x101376290     0x101376294     0x101376298     0x1013762a0     0x1013762a8     0x1013"
+      expected (nonprintable as hex) : "0x101376288     0x101376289     0x10137628a     0x10137628c     0x101376290     0x101376294     0x101376298     0x1013762a0     0x1013762a8     0x1013"
+      actual   (nonprintable as hex) : "0x101376288     0x101376289     0x10137628a     0x10137628c     0x101376290     0x101376294     0x101376298     0x1013762a0     0x1013762a8     0x1013"
+
+Test 446 (p_width_8_lj) : FAILED.
+    First line of code: {return test("%-8p%-8p%-8p%-8p%-8p%-8p%-8p%-8p%-8p%-8p%-8p%-8p",&a01,&a02,&a03,&a04,&a05,&a06,&a07,&a08,&a09,&a10,&a11,&a12);      expected return value : 156
+      your return value     : 156
+      expected output : "0x1013762880x1013762890x10137628a0x10137628c0x1013762900x1013762940x1013762980x1013762a00x1013762a80x1013762b00x1013762b80x1013762c0"
+      your output     : "0x1013762880x1013762890x10137628a0x10137628c0x1013762900x1013762940x1013762980x1013762a00x1013762a80x1013762b00x1013762b80x1013762c0
+hellow size_addr "
+      expected (nonprintable as hex) : "0x1013762880x1013762890x10137628a0x10137628c0x1013762900x1013762940x1013762980x1013762a00x1013762a80x1013762b00x1013762b80x1013762c0"
+      actual   (nonprintable as hex) : "0x1013762880x1013762890x10137628a0x10137628c0x1013762900x1013762940x1013762980x1013762a00x1013762a80x1013762b00x1013762b80x1013762c0\x0ahellow size_addr "
 
 Test 447 (p_width_32_lj) : FAILED.
     First line of code: {return test("%-32p%-32p%-32p%-32p%-32p%-32p%-32p%-32p%-32p%-32p%-32p%-32p",&a01,&a02,&a03,&a04,&a05,&a06,&a07,&a08,&a09,&a10      expected return value : 455
       your return value     : 455
-      expected output : "0x10fad7288                     0x10fad7289                     0x10fad728a                     0x10fad728c                     0x10fad7290           "
-      your output     : "                     0x10fad7288                     0x10fad7289                     0x10fad728a                     0x10fad728c                     0"
-      expected (nonprintable as hex) : "0x10fad7288                     0x10fad7289                     0x10fad728a                     0x10fad728c                     0x10fad7290           "
-      actual   (nonprintable as hex) : "                     0x10fad7288                     0x10fad7289                     0x10fad728a                     0x10fad728c                     0"
-
-Test 635 (moul_d_7) : FAILED.
-    First line of code: {return test("%d", INT_MIN);}
-      expected return value : 12
-      your return value     : 22
-      expected output : "-2147483648"
-      your output     : "18446744071562067968"
-      expected (nonprintable as hex) : "-2147483648"
-      actual   (nonprintable as hex) : "18446744071562067968"
-
-Test 637 (moul_d_9) : FAILED.
-    First line of code: {return test("%d", INT_MAX + 1);}
-      expected return value : 12
-      your return value     : 22
-      expected output : "-2147483648"
-      your output     : "18446744071562067968"
-      expected (nonprintable as hex) : "-2147483648"
-      actual   (nonprintable as hex) : "18446744071562067968"
-
-Test 643 (moul_c_2) : FAILED.
-    First line of code: {return test("Kashim a %c histoires Ã  raconter", 1001);}
-      expected return value : 35
-      your return value     : 25
-      expected output : "Kashim a é histoires Ã  raconter"
-      your output     : "é histoires Ã  raconter"
-      expected (nonprintable as hex) : "Kashim a \xe9 histoires \xc3\xa0 raconter"
-      actual   (nonprintable as hex) : "\xe9 histoires \xc3\xa0 raconter"
-
-Test 644 (moul_c_3) : FAILED.
-    First line of code: {return test("Il fait au moins %c
-", -8000);}
-      expected return value : 20
-      your return value     : 2
-      expected output : "Il fait au moins À
-"
-      your output     : "À
-"
-      expected (nonprintable as hex) : "Il fait au moins \xc0\x0a"
-      actual   (nonprintable as hex) : "\xc0\x0a"
-
-Test 677 (moul_i_7) : FAILED.
-    First line of code: {return test("%i", INT_MIN);}
-      expected return value : 12
-      your return value     : 22
-      expected output : "-2147483648"
-      your output     : "18446744071562067968"
-      expected (nonprintable as hex) : "-2147483648"
-      actual   (nonprintable as hex) : "18446744071562067968"
-
-Test 679 (moul_i_9) : FAILED.
-    First line of code: {return test("%i", INT_MAX + 1);}
-      expected return value : 12
-      your return value     : 22
-      expected output : "-2147483648"
-      your output     : "18446744071562067968"
-      expected (nonprintable as hex) : "-2147483648"
-      actual   (nonprintable as hex) : "18446744071562067968"
-
-Test 716 (moul_leftjusty_2) : FAILED.
-    First line of code: {return test("%%-d 42 == %-d
-", INT_MIN);}
-      expected return value : 24
-      your return value     : 34
-      expected output : "%-d 42 == -2147483648
-"
-      your output     : "%-d 42 == 18446744071562067968
-"
-      expected (nonprintable as hex) : "%-d 42 == -2147483648\x0a"
-      actual   (nonprintable as hex) : "%-d 42 == 18446744071562067968\x0a"
-
-Test 739 (new2019_negstar_4) : FAILED.
-    First line of code: {return test("%.*s", -3, "hello");}
-      expected return value : 5
-      your return value     : 0
-      expected output : "hello"
-      your output     : ""
-      expected (nonprintable as hex) : "hello"
-      actual   (nonprintable as hex) : ""
-
-Test 740 (new2019_negstar_5) : FAILED.
-    First line of code: {return test("%-*.*s", -7, -3, "yolo");}
-      expected return value : 7
-      your return value     : 7
-      expected output : "yolo   "
-      your output     : "       "
-      expected (nonprintable as hex) : "yolo   "
-      actual   (nonprintable as hex) : "       "
-
-Test 744 (new2019_negstar_9) : FAILED.
-    First line of code: {return test("%0*i", -7, -54);}
-      expected return value : 7
-      your return value     : 7
-      expected output : "-54    "
-      your output     : "-540000"
-      expected (nonprintable as hex) : "-54    "
-      actual   (nonprintable as hex) : "-540000"
+      expected output : "0x101376288                     0x101376289                     0x10137628a                     0x10137628c                     0x101376290           "
+      your output     : "0x101376288                     0x101376289                     0x10137628a                     0x10137628c                     0x101376290           "
+      expected (nonprintable as hex) : "0x101376288                     0x101376289                     0x10137628a                     0x10137628c                     0x101376290           "
+      actual   (nonprintable as hex) : "0x101376288                     0x101376289                     0x10137628a                     0x10137628c                     0x101376290           "
 
