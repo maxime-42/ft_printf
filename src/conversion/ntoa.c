@@ -6,7 +6,7 @@
 /*   By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 12:32:29 by mkayumba          #+#    #+#             */
-/*   Updated: 2019/12/03 12:33:19 by mkayumba         ###   ########.fr       */
+/*   Updated: 2020/01/13 19:07:59 by mkayumba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,21 @@ void	apostrophe(t_info *info, int *p)
 	*p -= 1;
 }
 
-void	ntoa(t_info *info, unsigned long long value)
+static void	lenght_max(t_info *info)
 {
-	int		digit;
-	static	int	index = 0;
-
 	if (!(info->lenght ^ BUF_SIZE))
 	{
 		info->ret += write(1, info->buf, info->lenght);
 		info->lenght = 0;
 	}
+}
+
+void	ntoa(t_info *info, unsigned long long value)
+{
+	int		digit;
+	static	int	index = 0;
+
+	lenght_max(info);
 	if (value >= info->base)
 	{
 		index++;
@@ -41,13 +46,17 @@ void	ntoa(t_info *info, unsigned long long value)
 	digit = value % info->base;
 	if (digit < 10)
 		info->buf[info->lenght++] = digit + '0';
+	else if (info->flags & FLAGS_UPPERCASE)
+	{
+		//printf("\nMAJUSCULE\n");
+		//return ;
+		info->buf[info->lenght++] = digit + 'A'- 10;
+	}
 	else
 	{
-		if (info->flags & FLAGS_UPPERCASE)
-			info->buf[info->lenght++] = digit + 'A'- 10;
-		else
-			info->buf[info->lenght++] = digit + 'a'- 10;
+		//printf("\nminiscule\n");
+	info->buf[info->lenght++] = digit + 'a'- 10;
 	}
-	if ((info->flags & FLAGS_APOSTROPHE))
-		apostrophe(info, &index);
+/* 	if ((info->flags & FLAGS_APOSTROPHE)) */
+/* 		apostrophe(info, &index); */
 }

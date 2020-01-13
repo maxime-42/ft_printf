@@ -6,7 +6,7 @@
 /*   By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 12:54:05 by mkayumba          #+#    #+#             */
-/*   Updated: 2020/01/08 15:29:30 by mkayumba         ###   ########.fr       */
+/*   Updated: 2020/01/13 17:51:08 by mkayumba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,32 +18,32 @@
 # include <stdio.h>
 # include "libft.h"
 # define BUF_SIZE 64U
-# define FLAGS_ZERO		(1U <<  0U)
-# define FLAGS_LEFT		(1U <<  1U)
-# define FLAGS_PLUS		(1U <<  2U)
+# define FLAGS_ZERO			(1U <<  0U)
+# define FLAGS_LEFT			(1U <<  1U)
+# define FLAGS_PLUS			(1U <<  2U)
 # define FLAGS_SPACE		(1U <<  3U)
-# define FLAGS_HASH		(1U <<  4U)
+# define FLAGS_HASH			(1U <<  4U)
 # define FLAGS_UPPERCASE	(1U <<  5U)
-# define FLAGS_CHAR		(1U <<  6U)
+# define FLAGS_CHAR			(1U <<  6U)
 # define FLAGS_SHORT		(1U <<  7U)
-# define FLAGS_LONG		(1U <<  8U)
+# define FLAGS_LONG			(1U <<  8U)
 # define FLAGS_LONG_LONG	(1U <<  9U)
 # define FLAGS_PRECISION	(1U << 10U)
-# define FLAGS_WIDTH	(1U << 11U)
+# define FLAGS_WIDTH		(1U << 11U)
 # define FLAGS_APOSTROPHE	(1U << 12U)
-# define FLAGS_UNSIGNED (1U << 13U)
+# define FLAGS_UNSIGNED		(1U << 13U)
 
 typedef struct			s_info
 {
 	char				buf[BUF_SIZE];
-	unsigned int	flags;
+	unsigned int		flags;
 	unsigned int		precision;
 	unsigned int		width;
 	unsigned int		lenght;
 	unsigned int		base;
 	unsigned short int	negative;
-	int			ret;
-}				t_info;
+	int					ret;
+}						t_info;
 
 typedef	struct			s_struct
 {
