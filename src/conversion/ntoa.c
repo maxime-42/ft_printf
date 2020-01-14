@@ -32,32 +32,6 @@ static void	lenght_max(t_info *info)
 	}
 }
 
-char		*ft_ntoa(long long n, char *base, char *p)
-{
-	char	sign;
-	t_size length;
-	size_t size_base;
-
-	sign =  '\0';
-	if (n < 0) 
-		signr = ? '-';
-	size_base = ft_strlen(base);
-	length = ft_lenght_nbr(n, size_base);
-	if (!p && !(p = malloc(sizeof(char) * (length + 1))))
-		return (0);
-	p[length] = '\0';
-	while (length)
-	{
-		if (n < 0)
-			p[--length] = -(base[(n % size_base)]);
-		else
-			p[--length] = (base[(n % size_base)]);
-		n = n / size_base;
-	}
-	if (sign)
-		p[length] = sign;
-	return (p);
-}
 
 /* void	ntoa(t_info *info, unsigned long long value) */
 /* { */
@@ -87,4 +61,3 @@ char		*ft_ntoa(long long n, char *base, char *p)
 /* /\* 	if ((info->flags & FLAGS_APOSTROPHE)) *\/ */
 /* /\* 		apostrophe(info, &index); *\/ */
 /* } */
-
