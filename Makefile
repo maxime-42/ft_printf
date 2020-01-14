@@ -6,7 +6,7 @@
 #    By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/18 17:16:34 by mkayumba          #+#    #+#              #
-#    Updated: 2020/01/08 14:25:07 by mkayumba         ###   ########.fr        #
+#    Updated: 2020/01/14 17:38:07 by mkayumba         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -44,6 +44,7 @@ SOURCES	=	ft_printf.c\
 		conversion/fill_buffer.c\
 		conversion/conv_type_addr.c\
 		conversion/special_case_with_zero.c\
+		conversion/index_max_buf.c\
 
 SRC = $(addprefix $(DIR_S)/,$(SOURCES))
 

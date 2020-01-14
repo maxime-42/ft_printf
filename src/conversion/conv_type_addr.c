@@ -6,7 +6,7 @@
 /*   By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/27 16:38:09 by mkayumba          #+#    #+#             */
-/*   Updated: 2020/01/13 20:24:59 by mkayumba         ###   ########.fr       */
+/*   Updated: 2020/01/14 17:49:25 by mkayumba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,7 @@ static void	no_flags_left( t_info *info, unsigned long long addr, size_t size_ad
 	{
 		total_size += 2;
 		if (!(info->flags & FLAGS_PRECISION) && !addr)
-		{
 			total_size += 1;
-		}
 		put_width_in_buf(info, total_size);
 	}
 	fill_buf(info, 1, '0');
@@ -38,7 +36,17 @@ static void	no_flags_left( t_info *info, unsigned long long addr, size_t size_ad
 	if ((info->flags & FLAGS_PRECISION) && addr == 0)
 		;
 	else
-		ntoa(info, addr);
+	{
+		size_addr = ft_lenght_nbr(addr, info->base);
+		if ((info->lenght + size_addr) >= BUF_SIZE)
+			index_max_buf(info);
+		ft_ntoa_base(addr, "0123456789abcdef", info->buf + info->lenght);
+		info->lenght += size_addr;
+	}
+}
+static void	flags_left( t_info *info, unsigned long long addr, size_t size_addr)
+{
+
 }
 
 void	conv_type_addr(t_info *info, va_list  va)
@@ -48,9 +56,7 @@ void	conv_type_addr(t_info *info, va_list  va)
 	size_t	size_addr;
 
 	i = 0;
-	//size_addr = 2;
 	size_addr = 0;
-	//printf("\ninfo->base = %u\n", info->base);
 	addr = (unsigned long long)va_arg(va, char*);
 	if (addr)
 	{

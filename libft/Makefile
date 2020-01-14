@@ -39,6 +39,7 @@ MANDATORY = 	./ft_memset.c\
 				./ft_toupper.c\
 				./ft_tolower.c\
 				./ft_lenght_nbr.c\
+				./ft_ntoa_base.c\
 
 BONUS	= 	./ft_lstnew_bonus.c\
 			./ft_lstadd_front_bonus.c\

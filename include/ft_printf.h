@@ -6,7 +6,7 @@
 /*   By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 12:54:05 by mkayumba          #+#    #+#             */
-/*   Updated: 2020/01/13 17:51:08 by mkayumba         ###   ########.fr       */
+/*   Updated: 2020/01/14 17:35:35 by mkayumba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,12 @@ void				convert_long(t_info *info, long value);
 void				conv_type_integer(t_info *info, va_list va);
 void				conv_type_string(t_info *info, va_list  va);
 void				conv_type_addr(t_info *info, va_list  va);
-//void				ntoa(t_info *info, unsigned long long value);
-char				*ft_ntoa(long long n, char *base, char *p);
+void				ntoa(t_info *info, unsigned long long value);
 void				conv_type_c(t_info *info, va_list  va);
 void				conv_type_percentage(t_info *info, va_list  va);
 void				conv_type_n(t_info *info, va_list  va);
 void				conv_type_float(t_info *info, va_list va);
 void				fill_buf(t_info *info, size_t n, char c);
 void				special_case_with_zero(t_info *info, unsigned long long value);
+void				index_max_buf(t_info *info);
 #endif

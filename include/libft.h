@@ -6,7 +6,7 @@
 /*   By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 17:03:04 by mkayumba          #+#    #+#             */
-/*   Updated: 2019/11/29 15:18:03 by mkayumba         ###   ########.fr       */
+/*   Updated: 2020/01/14 16:55:12 by mkayumba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ char				*ft_strrchr(const char *s, int c);
 int					ft_isascii(int c);
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 unsigned int		ft_lenght_nbr(long long nbr, unsigned int base);
+char				*ft_ntoa_base(long long n, char *base, char *p);
 
 typedef struct		s_list
 {
