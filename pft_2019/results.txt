@@ -7,27 +7,51 @@ WARNING: The return values reported here may be bugged on some systems.
           the function output--only the reported return value.
 
 
-Test 443 (p_width_fit_lj) : FAILED.
-    First line of code: {return test("%-70p%-70p%-70p%-70p%-70p%-70p%-70p%-70p%-70p%-70p%-70p%-70p",&a01,&a02,&a03,&a04,&a05,&a06,&a07,&a08,&a09,&a10      expected return value : 1012
-      your return value     : 1012
-      expected output : "0x1082e0288                                                           0x1082e0289                                                           0x1082e028"
-      your output     : "                                                           0x1082e0288                                                           0x1082e0289          "
-      expected (nonprintable as hex) : "0x1082e0288                                                           0x1082e0289                                                           0x1082e028"
-      actual   (nonprintable as hex) : "                                                           0x1082e0288                                                           0x1082e0289          "
+Test 643 (moul_c_2) : FAILED.
+    First line of code: {return test("Kashim a %c histoires Ã  raconter", 1001);}
+      expected return value : 35
+      your return value     : 25
+      expected output : "Kashim a é histoires Ã  raconter"
+      your output     : "é histoires Ã  raconter"
+      expected (nonprintable as hex) : "Kashim a \xe9 histoires \xc3\xa0 raconter"
+      actual   (nonprintable as hex) : "\xe9 histoires \xc3\xa0 raconter"
 
-Test 445 (p_width_16_lj) : FAILED.
-    First line of code: {return test("%-16p%-16p%-16p%-16p%-16p%-16p%-16p%-16p%-16p%-16p%-16p%-16p",&a01,&a02,&a03,&a04,&a05,&a06,&a07,&a08,&a09,&a10      expected return value : 222
-      your return value     : 222
-      expected output : "0x1082e0288     0x1082e0289     0x1082e028a     0x1082e028c     0x1082e0290     0x1082e0294     0x1082e0298     0x1082e02a0     0x1082e02a8     0x1082"
-      your output     : "     0x1082e0288     0x1082e0289     0x1082e028a     0x1082e028c     0x1082e0290     0x1082e0294     0x1082e0298     0x1082e02a0     0x1082e02a8     0"
-      expected (nonprintable as hex) : "0x1082e0288     0x1082e0289     0x1082e028a     0x1082e028c     0x1082e0290     0x1082e0294     0x1082e0298     0x1082e02a0     0x1082e02a8     0x1082"
-      actual   (nonprintable as hex) : "     0x1082e0288     0x1082e0289     0x1082e028a     0x1082e028c     0x1082e0290     0x1082e0294     0x1082e0298     0x1082e02a0     0x1082e02a8     0"
+Test 644 (moul_c_3) : FAILED.
+    First line of code: {return test("Il fait au moins %c
+", -8000);}
+      expected return value : 20
+      your return value     : 2
+      expected output : "Il fait au moins À
+"
+      your output     : "À
+"
+      expected (nonprintable as hex) : "Il fait au moins \xc0\x0a"
+      actual   (nonprintable as hex) : "\xc0\x0a"
 
-Test 447 (p_width_32_lj) : FAILED.
-    First line of code: {return test("%-32p%-32p%-32p%-32p%-32p%-32p%-32p%-32p%-32p%-32p%-32p%-32p",&a01,&a02,&a03,&a04,&a05,&a06,&a07,&a08,&a09,&a10      expected return value : 455
-      your return value     : 455
-      expected output : "0x1082e0288                     0x1082e0289                     0x1082e028a                     0x1082e028c                     0x1082e0290           "
-      your output     : "                     0x1082e0288                     0x1082e0289                     0x1082e028a                     0x1082e028c                     0"
-      expected (nonprintable as hex) : "0x1082e0288                     0x1082e0289                     0x1082e028a                     0x1082e028c                     0x1082e0290           "
-      actual   (nonprintable as hex) : "                     0x1082e0288                     0x1082e0289                     0x1082e028a                     0x1082e028c                     0"
+Test 739 (new2019_negstar_4) : FAILED.
+    First line of code: {return test("%.*s", -3, "hello");}
+      expected return value : 5
+      your return value     : 0
+      expected output : "hello"
+      your output     : ""
+      expected (nonprintable as hex) : "hello"
+      actual   (nonprintable as hex) : ""
+
+Test 740 (new2019_negstar_5) : FAILED.
+    First line of code: {return test("%-*.*s", -7, -3, "yolo");}
+      expected return value : 7
+      your return value     : 7
+      expected output : "yolo   "
+      your output     : "       "
+      expected (nonprintable as hex) : "yolo   "
+      actual   (nonprintable as hex) : "       "
+
+Test 744 (new2019_negstar_9) : FAILED.
+    First line of code: {return test("%0*i", -7, -54);}
+      expected return value : 7
+      your return value     : 7
+      expected output : "-54    "
+      your output     : "-540000"
+      expected (nonprintable as hex) : "-54    "
+      actual   (nonprintable as hex) : "-540000"
 

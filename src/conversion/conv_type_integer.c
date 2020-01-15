@@ -6,7 +6,7 @@
 /*   By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 14:08:03 by mkayumba          #+#    #+#             */
-/*   Updated: 2020/01/08 16:18:24 by mkayumba         ###   ########.fr       */
+/*   Updated: 2020/01/15 17:39:33 by mkayumba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ static void	no_flags_left(t_info *info, unsigned long long value,
 		put_signe_in_buf(info);
 	put_width_in_buf(info, total_size);
 	if (!(info->flags & FLAGS_ZERO))
+	{
 		put_signe_in_buf(info);
+	}
 	handle_hash(info);
 	put_precision_in_buf(info, size);
 	ntoa(info, value);
@@ -82,14 +84,18 @@ static void	no_lenght_specifie(t_info *info, va_list va)
 		else
 		{
 			value = va_arg(va, int);
-			if (!(1 + (value >> 31) - (-value >> 31)))
+			u_value = (unsigned long long)value;
+			if (value < 0)
 			{
-				value = -value;
+				u_value = (unsigned long long)value * -1;
 				info->negative = 1;
+				//printf("\nnegative | value = %d | u_value = %llu\n", value, u_value);
 			}
+			put_format(info, u_value);
+			return ;
 		}
 	}
-	put_format(info, value);
+	put_format(info, (unsigned long long)value);
 	(void)va;
 }
 
@@ -120,5 +126,4 @@ void  conv_type_integer(t_info *info, va_list va)
 	}
 	else
 		no_lenght_specifie(info, va);
-	(void)va;
 }

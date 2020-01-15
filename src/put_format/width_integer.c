@@ -6,7 +6,7 @@
 /*   By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:30:41 by mkayumba          #+#    #+#             */
-/*   Updated: 2020/01/07 14:32:46 by mkayumba         ###   ########.fr       */
+/*   Updated: 2020/01/15 16:18:52 by mkayumba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	put_width_in_buf(t_info *info, unsigned int size)
 		}
 		else if (!(info->flags & FLAGS_LEFT) && !(info->flags & FLAGS_ZERO))
 		{
-		  space(info, info->width - size);
+			space(info, info->width - size);
 
 		}
 		else if (info->flags & FLAGS_LEFT)
