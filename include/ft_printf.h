@@ -6,7 +6,7 @@
 /*   By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 12:54:05 by mkayumba          #+#    #+#             */
-/*   Updated: 2020/01/14 17:35:35 by mkayumba         ###   ########.fr       */
+/*   Updated: 2020/01/16 15:43:11 by mkayumba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define FLAGS_WIDTH		(1U << 11U)
 # define FLAGS_APOSTROPHE	(1U << 12U)
 # define FLAGS_UNSIGNED		(1U << 13U)
+# define FLAGS_NEG_PREC		(1U << 14U)
 
 typedef struct			s_info
 {
@@ -75,4 +76,10 @@ void				conv_type_float(t_info *info, va_list va);
 void				fill_buf(t_info *info, size_t n, char c);
 void				special_case_with_zero(t_info *info, unsigned long long value);
 void				index_max_buf(t_info *info);
+void				ignore_0_when_left(t_info *info);
+void				ignore_0_when_precision(t_info *info);
+void				integer_no_flags_left(t_info *info, unsigned long long value, 
+										  unsigned int size, unsigned total_size);
+void				integer_flags_left(t_info *info, unsigned long long value,
+							  unsigned int size, unsigned total_size);
 #endif

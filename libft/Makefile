@@ -40,6 +40,7 @@ MANDATORY = 	./ft_memset.c\
 				./ft_tolower.c\
 				./ft_lenght_nbr.c\
 				./ft_ntoa_base.c\
+				./ft_conv_int_to_unsigned_longlong.c\
 
 BONUS	= 	./ft_lstnew_bonus.c\
 			./ft_lstadd_front_bonus.c\

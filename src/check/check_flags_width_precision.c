@@ -6,17 +6,26 @@
 /*   By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 18:13:08 by mkayumba          #+#    #+#             */
-/*   Updated: 2020/01/10 15:27:48 by mkayumba         ###   ########.fr       */
+/*   Updated: 2020/01/16 16:28:25 by mkayumba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <string.h>
 
+static int is_flags(const char **fmt)
+{
+	if (!(**fmt ^ '0') || !(**fmt ^ '-'))
+		return (1);
+	if ( !(**fmt ^ '+') || !(**fmt ^ ' ') || !(**fmt ^ '#'))
+		return (1);
+	return (0);
+
+}
+
 void	check_flags(const char **fmt, t_info *info)
 {
-	while (!(**fmt ^ '0') || !(**fmt ^ '-')
-	|| !(**fmt ^ '+') || !(**fmt ^ ' ') || !(**fmt ^ '#'))
+	while (is_flags(fmt))
 	{
 		if (!(**fmt ^ '0'))
 		{
@@ -42,6 +51,7 @@ void	check_flags(const char **fmt, t_info *info)
 	}
 }
 
+
 void	check_width(const char **fmt, t_info *info, va_list va)
 {
 	int	w;
@@ -60,7 +70,7 @@ void	check_width(const char **fmt, t_info *info, va_list va)
 		if (w < 0)
 		{
 			info->flags |= FLAGS_LEFT;
-			info->width = (unsigned int) 0 - w;
+			info->width = (unsigned int)0 - w;
 		}
 		else
 			info->width = (unsigned int)w;
@@ -86,8 +96,10 @@ void	check_precision(const char **fmt, t_info *info, va_list va)
 		else if (!(**fmt ^ '*'))
 		{
 			prec = va_arg(va, int);
-			if (prec > 0)
+			if (prec >= 0)
 				info->precision = (unsigned int)prec;
+			else if (prec < 0)
+				info->flags |= FLAGS_NEG_PREC;
 			else
 				info->precision = 0;
 			(*fmt)++;

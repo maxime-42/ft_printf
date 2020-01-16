@@ -6,22 +6,11 @@
 /*   By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 12:52:13 by mkayumba          #+#    #+#             */
-/*   Updated: 2019/12/27 14:56:04 by mkayumba         ###   ########.fr       */
+/*   Updated: 2020/01/16 16:28:21 by mkayumba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-void	print_bits(unsigned int n)
-{
-	if (n > 1)
-		print_bits(n >> 1);
-	if (n & 1 << 0)
-		write(1, "1", 1);
-	else
-		write(1, "0", 1);
-
-}
 
 static void	init_struct(t_info *info)
 {
@@ -31,6 +20,17 @@ static void	init_struct(t_info *info)
 	info->negative = 0;
 	info->lenght = 0;
 	info->precision = 0;
+}
+
+static void check_by_fmt(t_info *info, const char **fmt, va_list va)
+{
+	(*fmt)++;
+	check_flags(fmt, info);
+	check_width(fmt, info, va);
+	check_precision(fmt, info, va);
+	check_lenght_specifies(fmt, info);
+	check_type(fmt, info);
+	find_conv_type(fmt, info, va);
 }
 
 static int	_vsnprintf(const char *fmt, va_list va)
@@ -52,13 +52,7 @@ static int	_vsnprintf(const char *fmt, va_list va)
 		}
 		if  (!(*fmt ^ '%'))
 		{
-			fmt++;
-			check_flags(&fmt, &info);
-			check_width(&fmt, &info, va);
-			check_precision(&fmt, &info, va);
-			check_lenght_specifies(&fmt, &info);
-			check_type(&fmt, &info);
-			find_conv_type(&fmt, &info, va);
+			check_by_fmt(&info, &fmt, va);
 		}
 		else
 			info.ret += write(1, &info.buf, info.lenght);

@@ -6,7 +6,7 @@
 /*   By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 15:29:17 by mkayumba          #+#    #+#             */
-/*   Updated: 2020/01/15 16:49:22 by mkayumba         ###   ########.fr       */
+/*   Updated: 2020/01/16 15:52:12 by mkayumba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	put_signe_in_buf(t_info *info)
 {
 	if (info->negative)
 	{
-		//printf("kel by\n")
 		fill_buf(info, 1, '-');
 	}
 	else if (info->flags & FLAGS_PLUS)

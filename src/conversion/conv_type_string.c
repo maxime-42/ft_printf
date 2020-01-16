@@ -6,7 +6,7 @@
 /*   By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 12:17:37 by mkayumba          #+#    #+#             */
-/*   Updated: 2020/01/06 15:02:23 by mkayumba         ###   ########.fr       */
+/*   Updated: 2020/01/16 13:07:27 by mkayumba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	flags_left(t_info *info, char **p, size_t lenght)
 		lenght--;
 	}
 	lenght = save_lenght;
-	if (info->width > lenght)
+	if ((unsigned int)info->width > lenght)
 	{
 		nb_space = info->width - lenght;
 		while (i < nb_space)
@@ -55,7 +55,7 @@ static void	not_flags_left(t_info *info, char **p, size_t lenght)
 		c = ' ';
 	i = 0;
 	save_lenght = lenght;
-	if (info->width > lenght)
+	if ((unsigned int)info->width > lenght)
 	{
 		fill_buf(info, info->width - save_lenght, c);
 	}
@@ -80,7 +80,11 @@ void	conv_type_string(t_info *info, va_list  va)
 		p = "(null)";
 	lenght = ft_strlen(p);
 	if (info->flags & FLAGS_PRECISION && lenght > info->precision)
+	{
 		lenght = info->precision;
+		if (!info->precision && (info->flags & FLAGS_NEG_PREC))
+			lenght = ft_strlen(p);
+	}
 	if ((info->flags & FLAGS_LEFT))
 	{
 		info->flags &= ~(FLAGS_ZERO);

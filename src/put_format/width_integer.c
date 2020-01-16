@@ -6,7 +6,7 @@
 /*   By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:30:41 by mkayumba          #+#    #+#             */
-/*   Updated: 2020/01/15 16:18:52 by mkayumba         ###   ########.fr       */
+/*   Updated: 2020/01/16 11:15:36 by mkayumba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void space(t_info *info, unsigned int size)
 
 void	put_width_in_buf(t_info *info, unsigned int size)
 {
-	if (info->width > size)
+	if ((unsigned int)info->width > size)
 	{
 		if ((info->flags & FLAGS_SPACE))
 		{

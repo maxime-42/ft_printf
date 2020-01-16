@@ -6,15 +6,16 @@
 /*   By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/27 16:38:09 by mkayumba          #+#    #+#             */
-/*   Updated: 2020/01/15 16:26:02 by mkayumba         ###   ########.fr       */
+/*   Updated: 2020/01/16 16:39:52 by mkayumba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static	size_t lenght_width_precision( t_info *info, unsigned long long addr, size_t size_addr)
+static	size_t	lenght_width_precision(t_info *info, unsigned long long addr,
+size_t size_addr)
 {
-	size_t	total_size;
+	size_t				total_size;
 
 	total_size = size_addr;
 	if ((info->flags & FLAGS_PRECISION) && info->precision > size_addr)
@@ -27,7 +28,9 @@ static	size_t lenght_width_precision( t_info *info, unsigned long long addr, siz
 	}
 	return (total_size);
 }
-static void	no_flags_left( t_info *info, unsigned long long addr, size_t size_addr, size_t	total_size)
+
+static void		no_flags_left(t_info *info, unsigned long long addr,
+size_t size_addr, size_t total_size)
 {
 	put_width_in_buf(info, total_size);
 	fill_buf(info, 1, '0');
@@ -47,9 +50,10 @@ static void	no_flags_left( t_info *info, unsigned long long addr, size_t size_ad
 	}
 }
 
-static void	flags_left( t_info *info, unsigned long long addr, size_t size_addr, size_t	total_size)
+static void		flags_left(t_info *info, unsigned long long addr,
+size_t size_addr, size_t total_size)
 {
-	size_t tmp;
+	size_t				tmp;
 
 	fill_buf(info, 1, '0');
 	fill_buf(info, 1, 'x');
@@ -64,11 +68,11 @@ static void	flags_left( t_info *info, unsigned long long addr, size_t size_addr,
 	put_width_in_buf(info, total_size);
 }
 
-void	conv_type_addr(t_info *info, va_list  va)
+void			conv_type_addr(t_info *info, va_list va)
 {
-	unsigned long long addr;
-	size_t	total_size;
-	size_t	size_addr;
+	unsigned long long	addr;
+	size_t				total_size;
+	size_t				size_addr;
 
 	size_addr = 0;
 	addr = (unsigned long long)va_arg(va, char*);
@@ -79,7 +83,7 @@ void	conv_type_addr(t_info *info, va_list  va)
 	total_size = lenght_width_precision(info, addr, size_addr);
 	if (info->flags & FLAGS_LEFT)
 	{
-		flags_left(info, addr, size_addr, total_size);;
+		flags_left(info, addr, size_addr, total_size);
 	}
 	else
 	{
