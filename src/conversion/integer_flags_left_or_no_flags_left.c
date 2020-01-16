@@ -6,14 +6,14 @@
 /*   By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 15:34:01 by mkayumba          #+#    #+#             */
-/*   Updated: 2020/01/16 15:47:08 by mkayumba         ###   ########.fr       */
+/*   Updated: 2020/01/16 17:18:25 by mkayumba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 void	integer_no_flags_left(t_info *info, unsigned long long value,
-			      unsigned int size, unsigned total_size)
+unsigned int size, unsigned total_size)
 {
 	if (info->precision > size)
 	{
@@ -32,7 +32,7 @@ void	integer_no_flags_left(t_info *info, unsigned long long value,
 	special_case_with_zero(info, value);
 }
 
-void	integer_flags_left(t_info *info, unsigned long long value, 
+void	integer_flags_left(t_info *info, unsigned long long value,
 unsigned int size, unsigned total_size)
 {
 	handle_hash(info);

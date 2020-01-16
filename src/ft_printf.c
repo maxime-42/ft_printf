@@ -6,13 +6,13 @@
 /*   By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 12:52:13 by mkayumba          #+#    #+#             */
-/*   Updated: 2020/01/16 16:28:21 by mkayumba         ###   ########.fr       */
+/*   Updated: 2020/01/16 17:50:16 by mkayumba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	init_struct(t_info *info)
+static void		init_struct(t_info *info)
 {
 	info->base = 0;
 	info->flags = 0;
@@ -22,7 +22,7 @@ static void	init_struct(t_info *info)
 	info->precision = 0;
 }
 
-static void check_by_fmt(t_info *info, const char **fmt, va_list va)
+static void		check_by_fmt(t_info *info, const char **fmt, va_list va)
 {
 	(*fmt)++;
 	check_flags(fmt, info);
@@ -33,7 +33,7 @@ static void check_by_fmt(t_info *info, const char **fmt, va_list va)
 	find_conv_type(fmt, info, va);
 }
 
-static int	_vsnprintf(const char *fmt, va_list va)
+static int		ft_vsnprintf(const char *fmt, va_list va)
 {
 	t_info		info;
 
@@ -50,25 +50,25 @@ static int	_vsnprintf(const char *fmt, va_list va)
 			info.ret += write(1, &info.buf, info.lenght);
 			init_struct(&info);
 		}
-		if  (!(*fmt ^ '%'))
+		if (!(*fmt ^ '%'))
 		{
 			check_by_fmt(&info, &fmt, va);
 		}
 		else
 			info.ret += write(1, &info.buf, info.lenght);
 	}
-	(void) va;
+	(void)va;
 	return (info.ret);
 }
 
-int	ft_printf(const char *fmt, ...)
+int				ft_printf(const char *fmt, ...)
 {
 	va_list	va;
-	int ret;
+	int		ret;
 
 	va_start(va, fmt);
-	ret = _vsnprintf(fmt, va);
+	ret = ft_vsnprintf(fmt, va);
 	va_end(va);
-	(void) va;
+	(void)va;
 	return (ret);
 }

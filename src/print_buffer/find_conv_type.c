@@ -6,26 +6,26 @@
 /*   By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 15:09:46 by mkayumba          #+#    #+#             */
-/*   Updated: 2020/01/08 16:11:21 by mkayumba         ###   ########.fr       */
+/*   Updated: 2020/01/16 17:52:01 by mkayumba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 t_struct	g_array[] = {
-  {'i', &conv_type_integer},
-  {'d', &conv_type_integer},
-  {'u', &conv_type_integer},
-  {'X', &conv_type_integer},
-  {'x', &conv_type_integer},
-  {'o', &conv_type_integer},
-  {'s', &conv_type_string},
-  {'p', &conv_type_addr},
-  {'c', &conv_type_c},
-  {'%', &conv_type_percentage},
-  {'n', &conv_type_n},
-  {'f', &conv_type_float},
-  {0, 0},
+	{'i', &conv_type_integer},
+	{'d', &conv_type_integer},
+	{'u', &conv_type_integer},
+	{'X', &conv_type_integer},
+	{'x', &conv_type_integer},
+	{'o', &conv_type_integer},
+	{'s', &conv_type_string},
+	{'p', &conv_type_addr},
+	{'c', &conv_type_c},
+	{'%', &conv_type_percentage},
+	{'n', &conv_type_n},
+	{'f', &conv_type_float},
+	{0, 0},
 };
 
 void	find_conv_type(const char **fmt, t_info *info, va_list va)

@@ -6,24 +6,23 @@
 /*   By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 18:13:08 by mkayumba          #+#    #+#             */
-/*   Updated: 2020/01/16 16:28:25 by mkayumba         ###   ########.fr       */
+/*   Updated: 2020/01/16 17:28:55 by mkayumba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <string.h>
 
-static int is_flags(const char **fmt)
+static int		is_flags(const char **fmt)
 {
 	if (!(**fmt ^ '0') || !(**fmt ^ '-'))
 		return (1);
-	if ( !(**fmt ^ '+') || !(**fmt ^ ' ') || !(**fmt ^ '#'))
+	if (!(**fmt ^ '+') || !(**fmt ^ ' ') || !(**fmt ^ '#'))
 		return (1);
 	return (0);
-
 }
 
-void	check_flags(const char **fmt, t_info *info)
+void			check_flags(const char **fmt, t_info *info)
 {
 	while (is_flags(fmt))
 	{
@@ -51,8 +50,7 @@ void	check_flags(const char **fmt, t_info *info)
 	}
 }
 
-
-void	check_width(const char **fmt, t_info *info, va_list va)
+void			check_width(const char **fmt, t_info *info, va_list va)
 {
 	int	w;
 
@@ -79,7 +77,7 @@ void	check_width(const char **fmt, t_info *info, va_list va)
 	(void)va;
 }
 
-void	check_precision(const char **fmt, t_info *info, va_list va)
+void			check_precision(const char **fmt, t_info *info, va_list va)
 {
 	int	prec;
 

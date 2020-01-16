@@ -6,7 +6,7 @@
 /*   By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 12:32:29 by mkayumba          #+#    #+#             */
-/*   Updated: 2020/01/14 17:42:54 by mkayumba         ###   ########.fr       */
+/*   Updated: 2020/01/16 17:20:55 by mkayumba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	apostrophe(t_info *info, int *p)
 
 void	ntoa(t_info *info, unsigned long long value)
 {
-	int		digit;
+	int			digit;
 	static	int	index = 0;
 
 	index_max_buf(info);
@@ -39,11 +39,11 @@ void	ntoa(t_info *info, unsigned long long value)
 		info->buf[info->lenght++] = digit + '0';
 	else if (info->flags & FLAGS_UPPERCASE)
 	{
-		info->buf[info->lenght++] = digit + 'A'- 10;
+		info->buf[info->lenght++] = digit + 'A' - 10;
 	}
 	else
 	{
-		info->buf[info->lenght++] = digit + 'a'- 10;
+		info->buf[info->lenght++] = digit + 'a' - 10;
 	}
 	if ((info->flags & FLAGS_APOSTROPHE))
 		apostrophe(info, &index);

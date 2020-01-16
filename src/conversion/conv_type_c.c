@@ -6,13 +6,13 @@
 /*   By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/02 12:43:34 by mkayumba          #+#    #+#             */
-/*   Updated: 2020/01/16 15:49:09 by mkayumba         ###   ########.fr       */
+/*   Updated: 2020/01/16 16:42:54 by mkayumba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void no_flags_left(t_info *info, char c, size_t size)
+static void	no_flags_left(t_info *info, char c, size_t size)
 {
 	put_width_in_buf(info, size);
 	fill_buf(info, 1, c);
@@ -20,7 +20,7 @@ static void no_flags_left(t_info *info, char c, size_t size)
 	(void)size;
 }
 
-static void flags_left(t_info *info, char c, size_t size)
+static void	flags_left(t_info *info, char c, size_t size)
 {
 	fill_buf(info, 1, c);
 	put_width_in_buf(info, size);
@@ -28,9 +28,9 @@ static void flags_left(t_info *info, char c, size_t size)
 	(void)size;
 }
 
-void	conv_type_c(t_info *info, va_list  va)
+void		conv_type_c(t_info *info, va_list va)
 {
-	char c;
+	char	c;
 	size_t	size;
 
 	size = 1;

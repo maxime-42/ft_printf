@@ -6,13 +6,13 @@
 /*   By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:30:41 by mkayumba          #+#    #+#             */
-/*   Updated: 2020/01/16 11:15:36 by mkayumba         ###   ########.fr       */
+/*   Updated: 2020/01/16 17:41:21 by mkayumba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void space(t_info *info, unsigned int size)
+static void		space(t_info *info, unsigned int size)
 {
 	if (info->negative && !(info->flags & FLAGS_LEFT))
 	{
@@ -24,7 +24,7 @@ static void space(t_info *info, unsigned int size)
 		fill_buf(info, size, ' ');
 }
 
-void	put_width_in_buf(t_info *info, unsigned int size)
+void			put_width_in_buf(t_info *info, unsigned int size)
 {
 	if ((unsigned int)info->width > size)
 	{
@@ -39,7 +39,6 @@ void	put_width_in_buf(t_info *info, unsigned int size)
 		else if (!(info->flags & FLAGS_LEFT) && !(info->flags & FLAGS_ZERO))
 		{
 			space(info, info->width - size);
-
 		}
 		else if (info->flags & FLAGS_LEFT)
 		{

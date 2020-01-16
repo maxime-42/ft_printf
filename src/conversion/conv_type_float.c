@@ -6,7 +6,7 @@
 /*   By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 12:53:47 by mkayumba          #+#    #+#             */
-/*   Updated: 2019/12/04 16:24:36 by mkayumba         ###   ########.fr       */
+/*   Updated: 2020/01/16 16:44:10 by mkayumba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	no_flags_left(t_info *info, double value, unsigned int total_size)
 	(void)value;
 }
 
-static void flags_left(t_info *info, double value, unsigned int total_size)
+static void	flags_left(t_info *info, double value, unsigned int total_size)
 {
 	put_signe_in_buf(info);
 	conv_value(info, value);
@@ -61,7 +61,7 @@ static void flags_left(t_info *info, double value, unsigned int total_size)
 	(void)value;
 }
 
-void	conv_type_float(t_info *info, va_list va)
+void		conv_type_float(t_info *info, va_list va)
 {
 	double		value;
 	unsigned	total_size;

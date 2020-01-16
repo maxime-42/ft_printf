@@ -6,13 +6,13 @@
 /*   By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 12:19:01 by mkayumba          #+#    #+#             */
-/*   Updated: 2020/01/08 13:23:53 by mkayumba         ###   ########.fr       */
+/*   Updated: 2020/01/16 17:42:45 by mkayumba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	put_precision_in_buf(t_info *info,  unsigned int size)
+void	put_precision_in_buf(t_info *info, unsigned int size)
 {
 	if (info->flags & FLAGS_PRECISION)
 	{

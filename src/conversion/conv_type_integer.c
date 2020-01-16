@@ -6,13 +6,13 @@
 /*   By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 14:08:03 by mkayumba          #+#    #+#             */
-/*   Updated: 2020/01/16 15:46:25 by mkayumba         ###   ########.fr       */
+/*   Updated: 2020/01/16 16:49:25 by mkayumba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	put_format(t_info *info, unsigned long long value)
+static	void	put_format(t_info *info, unsigned long long value)
 {
 	unsigned int size;
 	unsigned int total_size;
@@ -21,7 +21,7 @@ static void	put_format(t_info *info, unsigned long long value)
 	total_size = size;
 	if ((info->flags & FLAGS_HASH))
 		total_size += 2;
- 	if (!value)
+	if (!value)
 		info->flags &= ~FLAGS_HASH;
 	if (info->width)
 		if (info->negative || (info->flags & (FLAGS_PLUS | FLAGS_SPACE)))
@@ -35,11 +35,10 @@ static void	put_format(t_info *info, unsigned long long value)
 	info->ret += write(1, info->buf, info->lenght);
 }
 
-
-static void	no_lenght_specifie(t_info *info, va_list va)
+static	void	no_lenght_specifie(t_info *info, va_list va)
 {
 	int					value;
-	unsigned long long u_value;
+	unsigned long long	u_value;
 
 	u_value = 0;
 	if (!(info->flags ^ FLAGS_CHAR))
@@ -64,7 +63,7 @@ static void	no_lenght_specifie(t_info *info, va_list va)
 	(void)va;
 }
 
-void  conv_type_integer(t_info *info, va_list va)
+void			conv_type_integer(t_info *info, va_list va)
 {
 	long long	vlong_long;
 	long		vlong;

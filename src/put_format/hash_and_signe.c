@@ -6,7 +6,7 @@
 /*   By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 15:29:17 by mkayumba          #+#    #+#             */
-/*   Updated: 2020/01/16 15:52:12 by mkayumba         ###   ########.fr       */
+/*   Updated: 2020/01/16 17:41:55 by mkayumba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	handle_hash(t_info *info)
 		else if (!(info->base ^ 16U) && (info->flags & FLAGS_UPPERCASE))
 			fill_buf(info, 1, 'X');
 		else if (!(info->base ^ 2U))
-	  		fill_buf(info, 1, 'b');
+			fill_buf(info, 1, 'b');
 	}
 }
 

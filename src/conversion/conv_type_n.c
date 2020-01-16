@@ -6,12 +6,13 @@
 /*   By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 16:36:43 by mkayumba          #+#    #+#             */
-/*   Updated: 2020/01/07 16:37:27 by mkayumba         ###   ########.fr       */
+/*   Updated: 2020/01/16 17:21:53 by mkayumba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "ft_printf.h"
 
-void	conv_type_n(t_info *info, va_list  va)
+void	conv_type_n(t_info *info, va_list va)
 {
 	int *p;
 

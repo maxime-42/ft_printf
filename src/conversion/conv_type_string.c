@@ -6,13 +6,13 @@
 /*   By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 12:17:37 by mkayumba          #+#    #+#             */
-/*   Updated: 2020/01/16 13:07:27 by mkayumba         ###   ########.fr       */
+/*   Updated: 2020/01/16 17:23:05 by mkayumba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	flags_left(t_info *info, char **p, size_t lenght)
+static	void	flags_left(t_info *info, char **p, size_t lenght)
 {
 	size_t	i;
 	size_t	save_lenght;
@@ -35,15 +35,12 @@ static void	flags_left(t_info *info, char **p, size_t lenght)
 	if ((unsigned int)info->width > lenght)
 	{
 		nb_space = info->width - lenght;
-		while (i < nb_space)
-		{
+		while (i++ < nb_space)
 			fill_buf(info, 1, c);
-			i++;
-		}
 	}
 }
 
-static void	not_flags_left(t_info *info, char **p, size_t lenght)
+static void		not_flags_left(t_info *info, char **p, size_t lenght)
 {
 	size_t	i;
 	size_t	save_lenght;
@@ -65,12 +62,11 @@ static void	not_flags_left(t_info *info, char **p, size_t lenght)
 		lenght--;
 		(*p)++;
 	}
-
 }
 
-void	conv_type_string(t_info *info, va_list  va)
+void			conv_type_string(t_info *info, va_list va)
 {
-	char *p;
+	char	*p;
 	size_t	lenght;
 	size_t	i;
 
@@ -92,7 +88,7 @@ void	conv_type_string(t_info *info, va_list  va)
 	}
 	else
 	{
-		not_flags_left(info, &p,lenght);
+		not_flags_left(info, &p, lenght);
 	}
 	info->ret += write(1, info->buf, info->lenght);
 }

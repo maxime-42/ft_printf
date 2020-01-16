@@ -6,7 +6,7 @@
 /*   By: mkayumba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 15:43:33 by mkayumba          #+#    #+#             */
-/*   Updated: 2020/01/06 16:36:34 by mkayumba         ###   ########.fr       */
+/*   Updated: 2020/01/16 17:19:45 by mkayumba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	fill_buf(t_info *info, size_t n, char c)
 {
-	 size_t	index;
+	size_t	index;
 
 	index = 0;
 	while (index < n)
